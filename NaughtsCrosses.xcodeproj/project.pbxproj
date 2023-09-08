@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE3BF2BA2AAB6ECB009139C6 /* naughtsCrosses.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE3BF2B82AAB6ECB009139C6 /* naughtsCrosses.cpp */; };
 		AE6BEDA92A9E30D4003A7276 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE6BEDA82A9E30D4003A7276 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AE3BF2B72AAB6EB4009139C6 /* NC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NC.h; sourceTree = "<group>"; };
+		AE3BF2B82AAB6ECB009139C6 /* naughtsCrosses.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = naughtsCrosses.cpp; sourceTree = "<group>"; };
+		AE3BF2B92AAB6ECB009139C6 /* naughtsCrosses.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = naughtsCrosses.hpp; sourceTree = "<group>"; };
 		AE6BEDA52A9E30D4003A7276 /* NaughtsCrosses */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NaughtsCrosses; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE6BEDA82A9E30D4003A7276 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,6 +62,9 @@
 			isa = PBXGroup;
 			children = (
 				AE6BEDA82A9E30D4003A7276 /* main.cpp */,
+				AE3BF2B82AAB6ECB009139C6 /* naughtsCrosses.cpp */,
+				AE3BF2B92AAB6ECB009139C6 /* naughtsCrosses.hpp */,
+				AE3BF2B72AAB6EB4009139C6 /* NC.h */,
 			);
 			path = NaughtsCrosses;
 			sourceTree = "<group>";
@@ -120,6 +127,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE6BEDA92A9E30D4003A7276 /* main.cpp in Sources */,
+				AE3BF2BA2AAB6ECB009139C6 /* naughtsCrosses.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

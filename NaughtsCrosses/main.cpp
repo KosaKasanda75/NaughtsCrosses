@@ -6,9 +6,23 @@
 //
 
 #include <iostream>
+#include <stdio.h>
+#include <string>
+#include <ncurses.h>
+
+#include "naughtsCrosses.hpp"
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+    
+    initscr();
+    noecho();
+    curs_set(0);
+    
+    keypad(stdscr, true);
+    start_color();
+    
+    naughtsCrosses();
+    
+    endwin();
+    
 }
