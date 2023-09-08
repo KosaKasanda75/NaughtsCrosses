@@ -52,10 +52,8 @@ NC::NC (int s){
 
 void NC::drawfield(WINDOW * win){
     getbegyx(win, yWin, xWin);
-    mvprintw(2, 0, "ywin: %d, xwin: %d", yWin, xWin);
     
     for (int i=0;i<cells;i++){
-        mvprintw(3, i, "%d ", i);
         if (i%2 == 0){
             for (int j=0;j<cells;j++){
                 if (j%2 != 0)
@@ -71,6 +69,45 @@ void NC::drawfield(WINDOW * win){
 }
 
 bool NC::winningCondition(){
+    
+    int yArr, xArr;
+    yArr = yPos/2;
+    xArr = xPos/2;
+    
+    int Hthree, Vthree, Dnthree, Dpthree;
+    Hthree = Vthree = Dnthree = Dpthree = 0;
+    
+    int who;
+    if (!turn)
+        who = naught;
+    else
+        who = cross;
+    
+    //HORIZONTAL
+    for (int i=0;i<size;i++){
+        if (digitalfield[yArr][i] == who)
+            Hthree++;
+        else
+            Hthree = 0;
+        if (Hthree == 3){
+            winner = true;
+            return winner;
+        }
+    }
+    //VERTICAL
+    for (int i=0;i<size;i++){
+        if (digitalfield[i][xArr] == who)
+            Vthree++;
+        else
+            Vthree = 0;
+        if (Vthree == 3){
+            winner = true;
+            return winner;
+        }
+    }
+    //DIAGONAL NEGATIVE
+    //DIAGONAL POSITIVE
+    
     return winner;
 }
 
@@ -101,20 +138,28 @@ void NC::newmv(WINDOW * win){
         }
     }
     
-    
+    //Print turn
     move(0, 0);
     clrtoeol();
-    //mvwprintw(stdscr, 0, 0, "y:%d , x:%d", yPos, xPos);
     if (turn)
         mvwprintw(stdscr, 0, 0, "O turn");
     else
         mvwprintw(stdscr, 0, 0, "X turn");
     
-    
+    //Print array
     for (int k=0;k<size;k++){
         for (int l=0;l<size;l++){
             mvwprintw(stdscr, 18+k, l, "%d", digitalfield[k][l]);
         }
+    }
+    
+    winningCondition();
+    if (winner){
+        if (!turn)
+            mvprintw(0, 0, "O Wins");
+        else
+            mvprintw(0, 0, "X Wins");
+        continueGame = false;
     }
     
 }
@@ -143,7 +188,7 @@ int NC::getmv(){
                 xPos = cells;
             break;
         case 'g':
-            if (digitalfield[yPos/2][xPos/2] == emptySpace && !tie){
+            if (digitalfield[yPos/2][xPos/2] == emptySpace && continueGame){
                 if (turn)
                     digitalfield[yPos/2][xPos/2] = naught;
                 else
@@ -153,7 +198,6 @@ int NC::getmv(){
             break;
         case 'r':
             restart();
-            continueGame = true;
             break;
         default:
             break;
@@ -179,6 +223,8 @@ bool NC::tieCheck(){
 void NC::restart(){
     memset(digitalfield, 0, sizeof(digitalfield));
     turn = true;
+    continueGame = true;
+    winner = false;
 }
 
 #endif /* NC_h */

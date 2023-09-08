@@ -27,7 +27,6 @@ void naughtsCrosses(){
     int yStart, xStart;
     
     getmaxyx(stdscr, yStart, xStart);
-    mvprintw(1, 0, "size: %d", c);
     
     WINDOW * gamewin = newwin((c+1)*2, (c+1)*2, yStart/6, xStart/3);
     refresh();
