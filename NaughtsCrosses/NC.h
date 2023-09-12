@@ -140,16 +140,14 @@ bool NC::winningCondition(){
     }
     //DIAGONAL POSITIVE==========================================================
 
-    if (xArr > yArr){
-        for (int i=0;i<size-(xArr-yArr);i++){ //Iterate through matrix
-            for (int j=size-(xArr-yArr);j>=0;j--){
-                if (size-(j-i) == size-(xArr-yArr)){ //only analyse values on diagonal
+    if (xArr+yArr < size-1){
+        for (int i=0;i<=xArr+yArr;i++){ //Iterate through matrix
+            for (int j=xArr+yArr;j>=0;j--){
+                if (i+j == yArr+xArr){ //only analyse values on diagonal
                     if (digitalfield[i][j] == who)
                         Dpthree++;
                     else
                         Dpthree = 0;
-                    mvprintw(1, 0, "Coord: %d, %d", i, j);
-                    getch();
                     if (Dpthree == 3){
                         winner = true;
                         return winner;
@@ -159,9 +157,9 @@ bool NC::winningCondition(){
         }
     }
     else {
-        for (int i=yArr-xArr;i<size;i++){ //Iterate through matrix
-            for (int j=size;j<=yArr-xArr;j--){
-                if (i-j == yArr-xArr){ //only analyse values on diagonal
+        for (int i=(yArr+xArr)-(size-1);i<size;i++){ //Iterate through matrix
+            for (int j=size-1;j>=(yArr+xArr)-(size-1);j--){
+                if (i+j == yArr+xArr){ //only analyse values on diagonal
                     if (digitalfield[i][j] == who)
                         Dpthree++;
                     else
