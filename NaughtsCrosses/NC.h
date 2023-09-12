@@ -83,7 +83,7 @@ bool NC::winningCondition(){
     else
         who = cross;
     
-    //HORIZONTAL
+    //HORIZONTAL=================================================================
     for (int i=0;i<size;i++){
         if (digitalfield[yArr][i] == who)
             Hthree++;
@@ -94,7 +94,7 @@ bool NC::winningCondition(){
             return winner;
         }
     }
-    //VERTICAL
+    //VERTICAL==================================================================
     for (int i=0;i<size;i++){
         if (digitalfield[i][xArr] == who)
             Vthree++;
@@ -105,8 +105,75 @@ bool NC::winningCondition(){
             return winner;
         }
     }
-    //DIAGONAL NEGATIVE
-    //DIAGONAL POSITIVE
+    //DIAGONAL NEGATIVE==========================================================
+    if (xArr > yArr){
+        for (int i=0;i<size-(xArr-yArr);i++){ //Iterate through matrix
+            for (int j=xArr-yArr;j<size;j++){
+                if (j-i == xArr-yArr){ //only analyse values on diagonal
+                    if (digitalfield[i][j] == who)
+                        Dnthree++;
+                    else
+                        Dnthree = 0;
+                    if (Dnthree == 3){
+                        winner = true;
+                        return winner;
+                    }
+                }
+            }
+        }
+    }
+    else {
+        for (int i=yArr-xArr;i<size;i++){ //Iterate through matrix
+            for (int j=0;j<size-(yArr-xArr);j++){
+                if (i-j == yArr-xArr){ //only analyse values on diagonal
+                    if (digitalfield[i][j] == who)
+                        Dnthree++;
+                    else
+                        Dnthree = 0;
+                    if (Dnthree == 3){
+                        winner = true;
+                        return winner;
+                    }
+                }
+            }
+        }
+    }
+    //DIAGONAL POSITIVE==========================================================
+
+    if (xArr > yArr){
+        for (int i=0;i<size-(xArr-yArr);i++){ //Iterate through matrix
+            for (int j=size-(xArr-yArr);j>=0;j--){
+                if (size-(j-i) == size-(xArr-yArr)){ //only analyse values on diagonal
+                    if (digitalfield[i][j] == who)
+                        Dpthree++;
+                    else
+                        Dpthree = 0;
+                    mvprintw(1, 0, "Coord: %d, %d", i, j);
+                    getch();
+                    if (Dpthree == 3){
+                        winner = true;
+                        return winner;
+                    }
+                }
+            }
+        }
+    }
+    else {
+        for (int i=yArr-xArr;i<size;i++){ //Iterate through matrix
+            for (int j=size;j<=yArr-xArr;j--){
+                if (i-j == yArr-xArr){ //only analyse values on diagonal
+                    if (digitalfield[i][j] == who)
+                        Dpthree++;
+                    else
+                        Dpthree = 0;
+                    if (Dpthree == 3){
+                        winner = true;
+                        return winner;
+                    }
+                }
+            }
+        }
+    }
     
     return winner;
 }
